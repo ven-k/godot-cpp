@@ -46,6 +46,7 @@ if unknown:
         print("    " + item[0] + "=" + item[1])
 
 scons_cache_path = os.environ.get("SCONS_CACHE")
+print(scons_cache_path)
 if scons_cache_path is not None:
     CacheDir(scons_cache_path)
     Decider("MD5")

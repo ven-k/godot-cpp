@@ -311,11 +311,12 @@ def _godot_cpp(env):
     env.AppendUnique(CPPPATH=[env.Dir(d) for d in [extension_dir, "include", "gen/include"]])
 
     library = None
-    library_name = "libgodot-cpp" + env["suffix"] + env["LIBSUFFIX"]
+    library_name = "libgodot-cpp" + env["suffix"] + env["SHLIBSUFFIX"]
+
 
     if env["build_library"]:
-        library = env.StaticLibrary(target=env.File("bin/%s" % library_name), source=sources)
+        library = env.SharedLibrary(library_name, source=sources)
         env.Default(library)
 
-    env.AppendUnique(LIBS=[env.File("bin/%s" % library_name)])
+    # env.AppendUnique(LIBS=[env.File("bin/%s" % library_name)])
     return library
